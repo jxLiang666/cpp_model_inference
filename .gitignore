@@ -43,3 +43,4 @@
 build.sh
 .clang-format
 build
+.vscode
