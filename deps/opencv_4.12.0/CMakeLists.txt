@@ -9,4 +9,4 @@ message(STATUS "OpenCV库文件: ${OpenCV_LIBRARIES}")
 
 add_library(opencv INTERFACE)
 target_link_libraries(opencv INTERFACE ${OpenCV_LIBRARIES})
-target_include_directories(opencv PRIVATE ${OpenCV_INCLUDE_DIRS})
+target_include_directories(opencv INTERFACE ${OpenCV_INCLUDE_DIRS})
