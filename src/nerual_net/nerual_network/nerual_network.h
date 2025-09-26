@@ -20,11 +20,11 @@ public:
     virtual int postprocess() = 0;
 
 protected:
-    std::string          name_;
-    std::string          model_path_;
-    std::vector< float > input_;
-    std::vector< float > output_;
-    std::vector< float > input_shape_;
-    std::vector< float > output_shape_;
+    std::string                           name_;
+    std::string                           model_path_;
+    std::vector< std::vector< float > >   input_;
+    std::vector< std::vector< float > >   output_;
+    std::vector< std::vector< int64_t > > input_shape_;
+    std::vector< std::vector< int64_t > > output_shape_;
 };
 }  // namespace nn

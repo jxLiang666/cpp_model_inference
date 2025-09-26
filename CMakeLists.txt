@@ -4,6 +4,9 @@ PROJECT("cpp_model_inference"
 VERSION 0.0.1
 LANGUAGES C CXX)
 
+set(CMAKE_CXX_STANDARD 17)            # 使用 C++17
+set(CMAKE_CXX_STANDARD_REQUIRED ON)   # 必须使用指定标准
+
 add_subdirectory(./deps/onnxruntime)
 link_libraries(onnxruntime)
 
