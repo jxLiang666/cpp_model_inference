@@ -44,3 +44,6 @@ build.sh
 .clang-format
 build
 .vscode
+data/**
+vis_default_root
+src/nerual_net/stdc_net
