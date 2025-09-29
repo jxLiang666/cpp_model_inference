@@ -40,7 +40,10 @@
 # debug information files
 *.dwo
 
-build.sh
+################################
+############ OTHER #############
+################################
 .clang-format
 build
-.vscode
+data/**
+vis_default_root
