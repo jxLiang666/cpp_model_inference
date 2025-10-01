@@ -14,6 +14,9 @@ public:
     virtual ~NerualNetworkBase() = default;
     virtual int infer(_IN std::vector< std::vector< NetData > > &_input, _OUT std::vector< std::vector< NetData > > &_output) = 0;
 
+    const std::string &getName() { return name_; }             ///< 获取模型名字
+    const std::string &getModelPath() { return model_path_; }  ///< 获取模型路径
+
 protected:
     int         pipeline(_IN std::vector< std::vector< NetData > > &_input, _OUT std::vector< std::vector< NetData > > &_output);  ///< 封装整个前处理到后处理流程
     virtual int init() = 0;
