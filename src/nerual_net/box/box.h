@@ -7,7 +7,7 @@ namespace nn {
 namespace tool {
     class Box {
     public:
-        explicit Box() : x1_(0), y1_(0), x2_(0), y2_(0), w_(0), h_(0), center_({0, 0}), score_(0) {};
+        explicit Box() : x1_(0), y1_(0), x2_(0), y2_(0), w_(0), h_(0), center_({0, 0}), score_(0) {}
         Box(Box &&) noexcept = default;
         Box(const Box &) = default;
         Box &operator=(Box &&) noexcept = default;

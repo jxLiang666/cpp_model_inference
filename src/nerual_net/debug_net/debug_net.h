@@ -3,7 +3,7 @@
 namespace nn {
 class DebugNet : public NerualNetworkBase {
 public:
-    DebugNet(const std::string &_model_path) {};
+    DebugNet(const std::string &_model_path) {}
     DebugNet(DebugNet &&) = default;
     DebugNet(const DebugNet &) = default;
     DebugNet &operator=(DebugNet &&) = default;
