@@ -3,10 +3,13 @@
 #include "stdc_data_adapter.h"
 #include "net_data_op.h"
 namespace nn {
-std::vector< std::vector< NetData > > StdcDataAdapter::doCreateInput(const std::any &_input) {
+std::vector< std::vector< NetData > > StdcDataAdapter::doCreateInput(std::any &&_input) {
+    using TupleType = std::tuple< cv::Mat & >;
+    auto &&args = std::any_cast< TupleType & >(_input);
+
     std::vector< std::vector< nn::NetData > > input;
 
-    cv::Mat img = std::any_cast< cv::Mat >(_input).clone();
+    cv::Mat img = std::get< 0 >(args);
     cv::resize(img, img, prep_size_);
     cv::cvtColor(img, img, cv::COLOR_BGR2RGB);
     img.convertTo(img, CV_32FC3, 1 / 255.0);

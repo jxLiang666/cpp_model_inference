@@ -20,7 +20,8 @@ public:
 
     template < typename T, typename... Args >
     auto infer(Args &&..._args) -> T {
-        auto input = adapter_->createInputData(std::forward< Args >(_args)...);
+        // auto input = adapter_->createInputData(std::forward< Args >(_args)...);
+        auto input = adapter_->createInputData(std::forward_as_tuple(_args...));
 
         std::vector< std::vector< nn::NetData > > output;
         model_->infer(input, output);

@@ -23,6 +23,7 @@ int main() {
     cv::Mat img;
     img = cv::imread("data/002_h_img.jpg");
     auto masks = nn->infer< std::vector< cv::Mat > >(img);
+    nnt::Vis::saveImg(img, "img");
     for (auto &&mask : masks) {
         nnt::Vis::saveMask(mask, "mask");
     }

@@ -16,8 +16,9 @@ public:
     virtual ~DataAdapterBase() = default;
 
     template < typename T >
-    std::vector< std::vector< NetData > > createInputData(_IN const T &_input) {
-        return doCreateInput(_input);
+    std::vector< std::vector< NetData > > createInputData(_IN T &&_input) {
+        // std::cout << __PRETTY_FUNCTION__ << std::endl;
+        return doCreateInput(std::make_any< std::decay_t< T > >(std::forward< T >(_input)));
     }
 
     template < typename T >
@@ -26,7 +27,7 @@ public:
     }
 
 protected:
-    virtual std::vector< std::vector< NetData > > doCreateInput(_IN const std::any &_input) = 0;
+    virtual std::vector< std::vector< NetData > > doCreateInput(_IN std::any &&_input) = 0;
     virtual std::any                              doCreateOutput(_OUT std::vector< std::vector< NetData > > &_output) = 0;
 };
 }  // namespace nn
