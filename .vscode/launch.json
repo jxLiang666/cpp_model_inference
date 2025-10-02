@@ -8,7 +8,7 @@
             "name": "Debug C++ Application",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/main",
+            "program": "${workspaceFolder}/build/demo/debug_net",
             "args": [
             ],
             "stopAtEntry": false,
