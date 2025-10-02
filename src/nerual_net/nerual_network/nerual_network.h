@@ -24,7 +24,14 @@ public:
         auto input = adapter_->createInputData(std::forward_as_tuple(_args...));
 
         std::vector< std::vector< nn::NetData > > output;
-        model_->infer(input, output);
+
+        auto ret = model_->infer(input, output);
+        if (ret) {
+            std::stringstream ss;
+            ss << "Error occurs in model infer of " << model_->getName() << " , ret is " << ret;
+            std::cerr << ss.str() << std::endl;
+            throw std::runtime_error(ss.str());
+        }
         return adapter_->createOutputData< T >(output);
     }
 
