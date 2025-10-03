@@ -26,9 +26,9 @@ protected:
     virtual int process(_OUT std::vector< std::vector< NetData > > &_output) override;
 
 protected:
-    virtual int infer(std::vector< NetData > &_input, std::vector< NetData > &_output) = 0;
-    virtual int postprocess(std::vector< NetData > &_output) = 0;
-
+    virtual int infer(_IN std::vector< std::vector< NetData > > &_input, _OUT std::vector< std::vector< NetData > > &_output) = 0;
+    virtual int postprocess(_IN_OUT std::vector< std::vector< NetData > > &_output) = 0;
+    
 private:
     static int getONNXTensorElementDataTypeSize(_IN const ONNXTensorElementDataType &_type);
 
