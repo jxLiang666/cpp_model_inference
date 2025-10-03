@@ -1,11 +1,14 @@
 #include <any>
+#include <string>
 #include <opencv2/opencv.hpp>
-
 #include "debug_net_data_adapter.h"
 #include "net_data_op.h"
 
 namespace nn {
 std::vector< std::vector< NetData > > DebugNetDataAdapter::doCreateInput(std::any &&_input) {
+    using TupleType = std::tuple< std::string &, std::string &, int &, int &, nn::NetData & >;
+    auto &&args = std::any_cast< TupleType & >(_input);
+
     std::vector< std::vector< nn::NetData > > input;
     return input;
 }

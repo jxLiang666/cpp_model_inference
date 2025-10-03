@@ -20,7 +20,7 @@ int main() {
     std::unique_ptr< nn::DataAdapterBase >   adapter = std::make_unique< nn::DebugNetDataAdapter >(cv::Size{1088, 1088}, cv::Size{576, 576});
     auto                                     nn = std::make_unique< nn::NerualNetwork >();
     nn->init(model, adapter);
-    auto output = nn->infer< std::string >("abc", "edf", 1, 42, nn::NetData(100));
+    auto output = nn->infer< std::string >(std::string("abc"), std::string("edf"), 1, 42, nn::NetData(100));
 
     return 0;
 }
