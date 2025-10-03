@@ -17,9 +17,18 @@ public:
 
     template < typename T >
     std::vector< std::vector< NetData > > createInputData(_IN T &&_input) {
-        // std::cout << __PRETTY_FUNCTION__ << std::endl;
-        return doCreateInput(std::make_any< std::decay_t< T > >(std::forward< T >(_input)));
-    }
+
+        try {
+            return doCreateInput(std::make_any< std::decay_t< T > >(std::forward< T >(_input)));
+        } catch (const std::bad_any_cast &e) {
+            std::cerr << "Catch error of std::bad_any_cast: " << e.what() << std::endl;
+            std::cerr << "The function definition is: " << __PRETTY_FUNCTION__  << std::endl;
+            throw e;
+        } catch (const std::exception &e) {
+            std::cerr << "Error in createInputData: " << e.what() << std::endl;
+            throw e;
+        }
+    };
 
     template < typename T >
     T createOutputData(_OUT std::vector< std::vector< NetData > > &_output) {
