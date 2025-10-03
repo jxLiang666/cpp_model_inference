@@ -6,6 +6,10 @@
 #include "box.h"
 
 namespace nn {
+/// @brief ONNX 神经网络实现类
+/// @details
+/// Onnx 类继承自 NerualNetworkBase，用于加载和运行 ONNX 格式的神经网络模型。
+/// 它封装了 ONNX Runtime 的会话管理、输入输出张量处理、前处理和后处理。
 class Onnx : public NerualNetworkBase {
 public:
     Onnx(const std::string &_model_path);
@@ -18,20 +22,22 @@ public:
 protected:
     virtual int init() override;
     virtual int deinit() override;
-    // virtual int infer(std::vector< NetData > &_input, std::vector< NetData > &_output) override;
     virtual int preprocess(_IN std::vector< std::vector< NetData > > &_input) override;
     virtual int process(_OUT std::vector< std::vector< NetData > > &_output) override;
-    // virtual int postprocess(std::vector< NetData > &_output) override;
+
+protected:
+    virtual int infer(std::vector< NetData > &_input, std::vector< NetData > &_output) = 0;
+    virtual int postprocess(std::vector< NetData > &_output) = 0;
 
 private:
     static int getONNXTensorElementDataTypeSize(_IN const ONNXTensorElementDataType &_type);
 
 private:
-    Ort::Env                         env_{nullptr};
-    Ort::MemoryInfo                  memory_info_{nullptr};
-    Ort::SessionOptions              session_options_{nullptr};
-    Ort::Session                     session_{nullptr};
-    Ort::AllocatorWithDefaultOptions allocator_;
+    Ort::Env                         env_{nullptr};              ///< ONNX Runtime 环境
+    Ort::MemoryInfo                  memory_info_{nullptr};      ///< 内存信息
+    Ort::SessionOptions              session_options_{nullptr};  ///< 会话选项
+    Ort::Session                     session_{nullptr};          ///< 模型会话
+    Ort::AllocatorWithDefaultOptions allocator_;                 ///< 默认分配器
 
     size_t                                   num_input_nodes_;     ///< 输入节点数量
     std::vector< std::string >               input_node_names_;    ///< 输入节点名字

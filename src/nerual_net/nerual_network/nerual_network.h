@@ -3,6 +3,11 @@
 #include "nerual_network_base.h"
 #include "data_adapter.h"
 namespace nn {
+/// @brief 神经网络封装类
+/// @details
+/// NerualNetwork 用于统一管理网络模型和数据适配器，提供一个简洁的接口
+/// 来执行推理。它组合了 NerualNetworkBase（具体网络实现）和 DataAdapterBase
+/// （数据输入/输出适配器），简化了推理流程。
 class NerualNetwork {
 public:
     NerualNetwork() = default;

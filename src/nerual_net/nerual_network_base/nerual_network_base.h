@@ -4,6 +4,11 @@
 #include "net_data.h"
 #include "nn_config.h"
 namespace nn {
+/// @brief 神经网络基类
+/// @details
+/// NerualNetworkBase 提供了神经网络推理的统一接口，包括模型初始化、前处理、
+/// 推理、后处理等完整流程。派生类需要实现具体的 init、deinit、preprocess、
+/// process 和 postprocess 方法。
 class NerualNetworkBase {
 public:
     NerualNetworkBase() = default;

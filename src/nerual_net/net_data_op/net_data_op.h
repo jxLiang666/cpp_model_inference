@@ -12,8 +12,9 @@ public:
     NetDataOp(NetDataOp &&) = delete;
     NetDataOp &operator=(NetDataOp &&) = delete;
 
+    ///< NetData拼接,支持多个NetData实例
     template < typename... Args >
-    static NetData concat(Args &&...args) {  ///< NetData拼接,支持多个NetData实例
+    static NetData concat(Args &&...args) {
         static_assert((std::is_same_v< std::decay_t< Args >, NetData > && ...),
                       "All arguments to concat must be of type NetData");
         // 计算总大小
@@ -33,8 +34,9 @@ public:
         return result;
     }
 
+    ///< 通道转换，T代表_data中的数据类型
     template < typename T >
-    static void hwc2chw(_IN_OUT nn::NetData &_data, _IN size_t _channels, _IN size_t _height, _IN size_t _width) {  ///< 通道转换，T代表_data中的数据类型
+    static void hwc2chw(_IN_OUT nn::NetData &_data, _IN size_t _channels, _IN size_t _height, _IN size_t _width) {
         std::vector< T > buffer(_data.getSize() / sizeof(T));
         auto             src = reinterpret_cast< T * >(_data.getData());
 
@@ -49,8 +51,9 @@ public:
         std::memcpy(_data.getData(), buffer.data(), _data.getSize());
     }
 
+    ///< 通道转换，T代表_data中的数据类型
     template < typename T >
-    static void chw2hwc(_IN_OUT nn::NetData &_data, _IN size_t _channels, _IN size_t _height, _IN size_t _width) {  ///< 通道转换，T代表_data中的数据类型
+    static void chw2hwc(_IN_OUT nn::NetData &_data, _IN size_t _channels, _IN size_t _height, _IN size_t _width) {
         std::vector< T > buffer(_data.getSize() / sizeof(T));
         auto             src = reinterpret_cast< T * >(_data.getData());
 

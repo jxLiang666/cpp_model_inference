@@ -4,6 +4,11 @@
 #include <vector>
 #include <iostream>
 namespace nn {
+/// @brief 网络数据结构
+/// @details
+/// NetData 是一个简单的数据缓冲结构，用于存储神经网络输入或输出数据。
+/// 它管理动态分配的内存，支持移动语义，但禁用拷贝构造和拷贝赋值，
+/// 同时提供深拷贝方法 `copy()`。
 struct NetData {
     explicit NetData(size_t _size) : size_(_size), data_(std::malloc(_size)) {
         std::cout << "create NetData, size is " << _size << std::endl;
